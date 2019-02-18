@@ -2,7 +2,8 @@ import { assert, test, runTests } from "https://deno.land/x/testing/mod.ts";
 import { toNoCase,
         toSpaceCase,
         toCamelCase,
-        toCapitalCase } from "./mod.ts";
+        toCapitalCase,
+        toSnakeCase } from "./mod.ts";
 
 test({name: "toNoCase", fn: () => {
         assert.equal(toNoCase('this is a string'), 'this is a string');
@@ -54,6 +55,18 @@ test({name: "toCapitalCase", fn: () => {
         assert.equal(toCapitalCase('This is a string'), 'This Is A String');
         assert.equal(toCapitalCase('This is a string'), 'This Is A String');
         assert.equal(toCapitalCase('-this__is$%a-string...'), 'This Is A String');
+}});
+
+test({name: "toSnakeCase", fn: () => {
+        assert.equal(toSnakeCase('this is a string'), 'this_is_a_string');
+        assert.equal(toSnakeCase('thisIsAString'), 'this_is_a_string');
+        assert.equal(toSnakeCase('THIS_IS_A_STRING'), 'this_is_a_string');
+        assert.equal(toSnakeCase('this.is.a.string'), 'this_is_a_string');
+        assert.equal(toSnakeCase('ThisIsAString'), 'this_is_a_string');
+        assert.equal(toSnakeCase('This is a string'), 'this_is_a_string');
+        assert.equal(toSnakeCase('This is a string'), 'this_is_a_string');
+        assert.equal(toSnakeCase('This is a string'), 'this_is_a_string');
+        assert.equal(toSnakeCase('-this__is$%a-string...'), 'this_is_a_string');
 }});
 
 runTests();

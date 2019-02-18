@@ -40,3 +40,7 @@ export function toCapitalCase(string) {
         return previous + letter.toUpperCase()
     })
 }
+
+export function toSnakeCase(string) {
+    return toSpaceCase(string).replace(/\s/g, '_')
+}
