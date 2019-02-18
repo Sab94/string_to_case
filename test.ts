@@ -3,7 +3,8 @@ import { toNoCase,
         toSpaceCase,
         toCamelCase,
         toCapitalCase,
-        toSnakeCase } from "./mod.ts";
+        toSnakeCase,
+        toDotCase } from "./mod.ts";
 
 test({name: "toNoCase", fn: () => {
         assert.equal(toNoCase('this is a string'), 'this is a string');
@@ -67,6 +68,18 @@ test({name: "toSnakeCase", fn: () => {
         assert.equal(toSnakeCase('This is a string'), 'this_is_a_string');
         assert.equal(toSnakeCase('This is a string'), 'this_is_a_string');
         assert.equal(toSnakeCase('-this__is$%a-string...'), 'this_is_a_string');
+}});
+
+test({name: "toDotCase", fn: () => {
+        assert.equal(toDotCase('this is a string'), 'this.is.a.string');
+        assert.equal(toDotCase('thisIsAString'), 'this.is.a.string');
+        assert.equal(toDotCase('THIS_IS_A_STRING'), 'this.is.a.string');
+        assert.equal(toDotCase('this.is.a.string'), 'this.is.a.string');
+        assert.equal(toDotCase('ThisIsAString'), 'this.is.a.string');
+        assert.equal(toDotCase('This is a string'), 'this.is.a.string');
+        assert.equal(toDotCase('This is a string'), 'this.is.a.string');
+        assert.equal(toDotCase('This is a string'), 'this.is.a.string');
+        assert.equal(toDotCase('-this__is$%a-string...'), 'this.is.a.string');
 }});
 
 runTests();

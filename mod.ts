@@ -44,3 +44,7 @@ export function toCapitalCase(string) {
 export function toSnakeCase(string) {
     return toSpaceCase(string).replace(/\s/g, '_')
 }
+
+export function toDotCase(string) {
+    return toSpaceCase(string).replace(/\s/g, '.')
+}
