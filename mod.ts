@@ -29,7 +29,7 @@ export function toSpaceCase(string: string): string {
     }).trim()
 }
 
-export function toCamelCase(string) {
+export function toCamelCase(string: string): string {
     return toSpaceCase(string).replace(/\s(\w)/g, function (matches, letter) {
         return letter.toUpperCase()
     })
