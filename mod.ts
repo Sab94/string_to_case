@@ -34,3 +34,9 @@ export function toCamelCase(string: string): string {
         return letter.toUpperCase()
     })
 }
+
+export function toCapitalCase(string) {
+    return toSpaceCase(string).replace(/(^|\s)(\w)/g, function (matches, previous, letter) {
+        return previous + letter.toUpperCase()
+    })
+}
