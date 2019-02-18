@@ -58,3 +58,9 @@ export function toPascalCase(string) {
         return letter.toUpperCase();
     })
 }
+
+export function toSentenceCase(string) {
+    return toNoCase(string).replace(/[a-z]/i, function (letter) {
+        return letter.toUpperCase()
+    }).trim()
+}

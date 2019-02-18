@@ -6,7 +6,8 @@ import { toNoCase,
         toSnakeCase,
         toDotCase,
         toConstantCase,
-        toPascalCase } from "./mod.ts";
+        toPascalCase,
+        toSentenceCase } from "./mod.ts";
 
 test({name: "toNoCase", fn: () => {
         assert.equal(toNoCase('this is a string'), 'this is a string');
@@ -106,6 +107,18 @@ test({name: "toPascalCase", fn: () => {
         assert.equal(toPascalCase('This is a string'), 'ThisIsAString');
         assert.equal(toPascalCase('This is a string'), 'ThisIsAString');
         assert.equal(toPascalCase('-this__is$%a-string...'), 'ThisIsAString');
+}});
+
+test({name: "toSentenceCase", fn: () => {
+        assert.equal(toSentenceCase('this is a string'), 'This is a string');
+        assert.equal(toSentenceCase('thisIsAString'), 'This is a string');
+        assert.equal(toSentenceCase('THIS_IS_A_STRING'), 'This is a string');
+        assert.equal(toSentenceCase('this.is.a.string'), 'This is a string');
+        assert.equal(toSentenceCase('ThisIsAString'), 'This is a string');
+        assert.equal(toSentenceCase('This is a string'), 'This is a string');
+        assert.equal(toSentenceCase('This is a string'), 'This is a string');
+        assert.equal(toSentenceCase('This is a string'), 'This is a string');
+        assert.equal(toSentenceCase('-this__is$%a-string...'), 'This is a string');
 }});
 
 runTests();
