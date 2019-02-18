@@ -13,13 +13,13 @@ export function toNoCase(string: string): string {
 
 function unseparate(string: string): string {
     return string.replace(separatorSplitter, function (m, next) {
-        return next ? ' ' + next : ''
+        return next ? ' ' + next : '';
     })
 }
 
 function uncamelize(string: string): string {
     return string.replace(camelSplitter, function (m, previous, uppers) {
-        return previous + ' ' + uppers.toLowerCase().split('').join(' ')
+        return previous + ' ' + uppers.toLowerCase().split('').join(' ');
     })
 }
 
@@ -31,20 +31,24 @@ export function toSpaceCase(string: string): string {
 
 export function toCamelCase(string: string): string {
     return toSpaceCase(string).replace(/\s(\w)/g, function (matches, letter) {
-        return letter.toUpperCase()
+        return letter.toUpperCase();
     })
 }
 
-export function toCapitalCase(string) {
+export function toCapitalCase(string: string): string {
     return toSpaceCase(string).replace(/(^|\s)(\w)/g, function (matches, previous, letter) {
-        return previous + letter.toUpperCase()
+        return previous + letter.toUpperCase();
     })
 }
 
-export function toSnakeCase(string) {
-    return toSpaceCase(string).replace(/\s/g, '_')
+export function toSnakeCase(string: string): string {
+    return toSpaceCase(string).replace(/\s/g, '_');
 }
 
-export function toDotCase(string) {
-    return toSpaceCase(string).replace(/\s/g, '.')
+export function toDotCase(string: string): string {
+    return toSpaceCase(string).replace(/\s/g, '.');
+}
+
+export function toConstantCase(string: string): string {
+    return toSnakeCase(string).toUpperCase();
 }
