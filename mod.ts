@@ -28,3 +28,9 @@ export function toSpaceCase(string: string): string {
         return match ? ' ' + match : ''
     }).trim()
 }
+
+export function toCamelCase(string) {
+    return toSpaceCase(string).replace(/\s(\w)/g, function (matches, letter) {
+        return letter.toUpperCase()
+    })
+}
