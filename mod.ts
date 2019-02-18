@@ -52,3 +52,9 @@ export function toDotCase(string: string): string {
 export function toConstantCase(string: string): string {
     return toSnakeCase(string).toUpperCase();
 }
+
+export function toPascalCase(string) {
+    return toSpaceCase(string).replace(/(?:^|\s)(\w)/g, function (matches, letter) {
+        return letter.toUpperCase();
+    })
+}
