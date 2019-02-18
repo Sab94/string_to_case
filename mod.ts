@@ -22,3 +22,9 @@ function uncamelize(string: string): string {
         return previous + ' ' + uppers.toLowerCase().split('').join(' ')
     })
 }
+
+export function toSpaceCase(string: string): string {
+    return toNoCase(string).replace(/[\W_]+(.|$)/g, function (matches, match) {
+        return match ? ' ' + match : ''
+    }).trim()
+}
