@@ -3,6 +3,53 @@ const hasSeparator = /(_|-|\.|:)/;
 const hasCamel = /([a-z][A-Z]|[A-Z][a-z])/;
 const separatorSplitter = /[\W_]+(.|$)/g;
 const camelSplitter = /(.)([A-Z]+)/g;
+const minors = [
+    'a',
+    'an',
+    'and',
+    'as',
+    'at',
+    'but',
+    'by',
+    'en',
+    'for',
+    'from',
+    'how',
+    'if',
+    'in',
+    'neither',
+    'nor',
+    'of',
+    'on',
+    'only',
+    'onto',
+    'out',
+    'or',
+    'per',
+    'so',
+    'than',
+    'that',
+    'the',
+    'to',
+    'until',
+    'up',
+    'upon',
+    'v',
+    'v.',
+    'versus',
+    'vs',
+    'vs.',
+    'via',
+    'when',
+    'with',
+    'without',
+    'yet'
+];
+const escaped = minors.map(escapeStringRegexp);
+const minorMatcher = new RegExp('[^^]\\b(' + escaped.join('|') + ')\\b', 'ig');
+const punctuationMatcher = /:\s*(\w)/g;
+
+import { escapeStringRegexp } from "https://raw.githubusercontent.com/Sab94/escape-string-regexp/master/mod.ts";
 
 export function toNoCase(string: string): string {
     if (hasSpace.test(string)) return string.toLowerCase();
@@ -63,4 +110,17 @@ export function toSentenceCase(string) {
     return toNoCase(string).replace(/[a-z]/i, function (letter) {
         return letter.toUpperCase()
     }).trim()
+}
+
+export function toTitleCase(string) {
+    return toSentenceCase(string)
+        .replace(/(^|\s)(\w)/g, function (matches, previous, letter) {
+            return previous + letter.toUpperCase()
+        })
+        .replace(minorMatcher, function (minor) {
+            return minor.toLowerCase()
+        })
+        .replace(punctuationMatcher, function (letter) {
+            return letter.toUpperCase()
+        })
 }

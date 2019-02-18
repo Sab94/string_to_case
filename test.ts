@@ -7,7 +7,8 @@ import { toNoCase,
         toDotCase,
         toConstantCase,
         toPascalCase,
-        toSentenceCase } from "./mod.ts";
+        toSentenceCase,
+        toTitleCase } from "./mod.ts";
 
 test({name: "toNoCase", fn: () => {
         assert.equal(toNoCase('this is a string'), 'this is a string');
@@ -119,6 +120,18 @@ test({name: "toSentenceCase", fn: () => {
         assert.equal(toSentenceCase('This is a string'), 'This is a string');
         assert.equal(toSentenceCase('This is a string'), 'This is a string');
         assert.equal(toSentenceCase('-this__is$%a-string...'), 'This is a string');
+}});
+
+test({name: "toTitleCase", fn: () => {
+        assert.equal(toTitleCase('a space case of string'), 'A Space Case of String');
+        assert.equal(toTitleCase('aCamelCaseOfString'), 'A Camel Case of String');
+        assert.equal(toTitleCase('a_snake_case_of_string'), 'A Snake Case of String');
+        assert.equal(toTitleCase('a.dot.case.of.string'), 'A Dot Case of String');
+        assert.equal(toTitleCase('A_CONSTANT_CASE_OF_STRING'), 'A Constant Case of String');
+        assert.equal(toTitleCase('the lord of the flies'), 'The Lord of the Flies');
+        assert.equal(toTitleCase('a tale of two cities'), 'A Tale of Two Cities');
+        assert.equal(toTitleCase('the lion, the witch and the wardrobe'), 'The Lion, the Witch and the Wardrobe');
+        assert.equal(toTitleCase('she: a history of adventure'), 'She: A History of Adventure');
 }});
 
 runTests();
