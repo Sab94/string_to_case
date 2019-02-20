@@ -49,7 +49,7 @@ const escaped = minors.map(escapeStringRegexp);
 const minorMatcher = new RegExp('[^^]\\b(' + escaped.join('|') + ')\\b', 'ig');
 const punctuationMatcher = /:\s*(\w)/g;
 
-import { escapeStringRegexp } from "https://raw.githubusercontent.com/Sab94/escape-string-regexp/master/mod.ts";
+import { escapeStringRegexp } from "https://raw.githubusercontent.com/Sab94/escape_string_regexp/master/mod.ts";
 
 export function toNoCase(string: string): string {
     if (hasSpace.test(string)) return string.toLowerCase();
